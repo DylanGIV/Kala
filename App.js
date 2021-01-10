@@ -1,13 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { theme } from './src/global';
+import { Button } from 'react-native-paper';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Start workign on app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider theme={theme}>
+      <View style={styles.container}>
+        <Text>Start working on app!</Text>
+          <Button icon="camera" mode="contained">
+            i am a button
+          </Button>
+        <StatusBar style="auto" />
+      </View>
+    </PaperProvider>
   );
 }
 
