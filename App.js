@@ -1,43 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Provider as PaperProvider } from 'react-native-paper';
-import { theme } from './src/global';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import 'react-native-gesture-handler';
-import HomeStack from './src/screens/Home/HomeStack';
-import AuthStack from './src/screens/Auth/AuthStack';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+import AppContent from './src';
+import configureStore from './src/redux/store'
+import * as Font from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
-const AppStack = createStackNavigator();
+const { store, persistor } = configureStore()
 
 export default function App() {
-  let signedIn = false;
-  return (
-    <PaperProvider theme={theme}>
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <AppStack.Navigator headerMode="none" >
-            {signedIn == true ? (
-              <AppStack.Screen name="HomeStack" component={HomeStack} />
-              ) : (
-              <AppStack.Screen name="AuthStack" component={AuthStack} />
-            )}
-          </AppStack.Navigator>
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </PaperProvider>
-  );
+  const[isLoadingComplete, setIsLoadingComplete] = useState(false)
+  
+
+  const loadResourcesAsync = async () => {
+    return Promise.all([
+      Font.loadAsync({
+        'nanum-regular': require('./assets/fonts/NanumGothic-Regular.ttf'),
+        'nanum-bold': require('./assets/fonts/NanumGothic-Bold.ttf'),
+        'nanum-extra-bold': require('./assets/fonts/NanumGothic-ExtraBold.ttf')
+      })
+    ])
+  }
+
+  const handleLoadingError = error => {
+    console.warn(error);
+  };
+
+  const handleFinishLoading = () => {
+    setIsLoadingComplete(true);
+  };
+
+
+  if (!isLoadingComplete) {
+    return (
+      <AppLoading
+        startAsync={loadResourcesAsync}
+        onError={handleLoadingError}
+        onFinish={handleFinishLoading}
+      />
+    );
+  } else {
+      return (
+        <Provider store={store}>
+          <AppContent/>
+        </Provider>
+      );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-
