@@ -36,15 +36,10 @@ const TransactionsScreen = ({ route }) => {
         <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
 
             <View style={{ flex: 1 }}>
-                {/* <Text style={{ color: theme.colors.text, fontSize: 28 }}>
-                    { account.name }
-                </Text>
-                <Text style={{ color: theme.colors.text, padding: 8 }}>
-                    { account.official_name }
-                </Text> */}
                 <SearchInput    
+                    placeholderTextColor={theme.colors.text}
                     onChangeText={(term) => { setSearchTerm(term) }} 
-                    style={{ padding: 10, borderWidth: 1, marginHorizontal: 10 }}
+                    style={{ padding: 10, borderWidth: 1, marginHorizontal: 10, borderRadius: 10, borderColor: theme.colors.surface, color: theme.colors.text }}
                     placeholder="Search Transactions"
                 
                 />

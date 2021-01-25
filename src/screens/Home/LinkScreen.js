@@ -3,17 +3,13 @@ import React, { useEffect, useState } from "react"
 import { View, StyleSheet, ActivityIndicator, Text } from "react-native"
 import PlaidLink from "@burstware/expo-plaid-link"
 
-// # COMPONENTS IMPORTS
-
 // # EXTRA IMPORTS
 import plaidConfig from "../../config/PlaidConfig"
 import plaid from "plaid"
+import axios from '../../api/axiosConfig';
 
-////////////////////////////////////////////////////////////////////////////////
-
-export default function LinkScreen() {
+export default function LinkScreen(props) {
   const [linkToken, setLinkToken] = useState(null)
-  const [accessToken, setAccessToken] = useState(null)
 
   const plaidClient = new plaid.Client({
     clientID: plaidConfig.PLAID_CLIENT_ID,
@@ -33,33 +29,40 @@ export default function LinkScreen() {
         language: "en",
       })
 
-      const token = response.link_token
-      setLinkToken(token)
+      setLinkToken(response.link_token)
     }
     getData()
   }, [])
 
+  const postToken = async (accessToken) => {
+    return new Promise((resolve, reject) => {
+        axios.post('BankAccount', {
+            plaidAccessToken: accessToken
+        })
+        .then((res) => resolve(res.data))
+        .catch((err) => reject(err))
+    })
+  }
   const exchangeToken = async (publicToken) => {
       const response = await plaidClient.exchangePublicToken(publicToken)
-      const token = response.access_token
-      setAccessToken(token)
-      console.log(token)
-      console.log(response.access_token)
+      await postToken(response.access_token)
+      props.navigation.goBack()
   }
+
 
   if (linkToken) {
     return (
       <PlaidLink
         linkToken={linkToken}
         onEvent={(event) => console.log(event, "event")}
-        onExit={(exit) => console.log(exit, "exit")}
+        onExit={() => props.navigation.goBack()}
         onSuccess={(success) => exchangeToken(success.publicToken)}
       />
     )
   } else {
     return (
       <View>
-        <Text>Loading...</Text>
+        <Text></Text>
       </View>
     )
   }

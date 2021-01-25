@@ -43,7 +43,7 @@ const AccountScreen = (props) => {
                         </Text>
                     </View>
                     <View style={{ flex: 1, backgroundColor: theme.colors.surface, borderTopRightRadius: 19, justifyContent: 'center' }}>
-                        <Button onPress={() => 
+                        <Button disabled={isLoading} onPress={() => 
                             props.navigation.navigate('Transactions', { account: account, accountId: accountId, transactions: transactions })
                         }>
                             All

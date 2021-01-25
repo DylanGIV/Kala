@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, SectionList, FlatList } from 'react-native';
+import { View, SectionList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Button, Text, ActivityIndicator } from 'react-native-paper';
+import { Text, ActivityIndicator, IconButton } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchInstitutions } from '../../redux/actions/InstitutionActions';
 import { useEffect } from 'react';
@@ -14,6 +14,10 @@ const HomeScreen = (props) => {
     const fetchBankAccounts = () => {
         dispatch(fetchInstitutions())
     }
+    const addAccount = () => {
+        props.navigation.navigate('Link')
+    }
+
     useEffect( () => {
         fetchBankAccounts()
         
@@ -28,13 +32,19 @@ const HomeScreen = (props) => {
         <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background}}>
             <View style={{ flex: 1 }}>
 
-                <View style={{ flex: 0.2, justifyContent: 'center' }}>
-                    <Text style={styles.title}>
+                <View style={{ flex: 0.2, justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', padding: 10 }}>
+                    <Text style={{ fontSize: 32 }}>
                         My Accounts
                     </Text>
+                    <IconButton 
+                        icon='plus-circle-outline'
+                        size={30}
+                        onPress={addAccount}
+                    />
                 </View>
+                <View style={{ flex: 0.1 }}/>
 
-                <View style={{ flex: 1, marginHorizontal: 10 }}>
+                <View style={{ flex: 2, marginHorizontal: 10 }}>
                     {(isLoading || !institutions) ? <ActivityIndicator size='large' /> :
                         <SectionList
                             keyExtractor={(item, index) => item + index}
@@ -65,16 +75,5 @@ const HomeScreen = (props) => {
         </SafeAreaView>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    title: {
-        alignSelf: 'flex-start',
-        fontSize: 32,
-        padding: 15,
-    },
-});
 
 export default HomeScreen

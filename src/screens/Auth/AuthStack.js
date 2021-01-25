@@ -1,7 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './LoginScreen';
 import RegisterScreen from './RegisterScreen';
-import LinkScreen from './LinkScreen';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -14,7 +13,6 @@ function AuthStack() {
         <Stack.Navigator initialRouteName="Login" >
             <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Register" component={RegisterScreen} options={{ headerTitle: '', headerStyle: { backgroundColor: theme.colors.background, elevation: 0, borderBottomWidth: 0 }, headerTintColor: theme.colors.text}} />
-            <Stack.Screen name="Link" component={LinkScreen} />
         </Stack.Navigator>
     );
 }

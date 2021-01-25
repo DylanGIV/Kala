@@ -2,13 +2,15 @@ import React, { useState, useRef } from 'react';
 import { TextInput, Button, Surface, Text } from 'react-native-paper';
 import { StyleSheet, View, SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import axios from '../../api/axiosConfig';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { loginWithEmailAndPassword } from '../../redux/actions/AuthActions';
 
 const RegisterScreen = () => {
     const [firstName, setFirstName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
+    const dispatch = useDispatch()
 
     const theme = useSelector(state => state.theme.theme)
 
@@ -30,14 +32,23 @@ const RegisterScreen = () => {
             alert("Passwords don't match");
             return
         }
+        try {
+            await axios.post('api/Authenticate/register', {
+                firstName: firstName,
+                email: email,
+                password: password
+            })
+            try {
+                dispatch(loginWithEmailAndPassword(email, password))
+                
+            } catch (error) {
+                alert(error)
+            }
+            
+        } catch (error) {
+            alert(error)
+        }
         
-        axios.post('api/Authenticate/register', {
-            firstName: firstName,
-            email: email,
-            password: password
-        })
-        .then((res) => {console.log(res.data)})
-        .catch((err) => {console.log(err)})
     }
 
     return (
@@ -53,6 +64,7 @@ const RegisterScreen = () => {
                             <TextInput style={styles.textInput}
                                 returnKeyType={"next"}
                                 blurOnSubmit={false}
+                                autoCorrect={false}
                                 label='First Name'
                                 value={firstName}
                                 onChangeText={firstName => setFirstName(firstName)}
@@ -63,6 +75,8 @@ const RegisterScreen = () => {
                                 blurOnSubmit={false}
                                 label='Email'
                                 value={email}
+                                autoCorrect={false}
+                                autoCapitalize='none'
                                 onChangeText={email => setEmail(email)}
                                 onSubmitEditing={() => ref_input3.current.focus()}
                                 ref={ref_input2}
@@ -72,6 +86,8 @@ const RegisterScreen = () => {
                                 blurOnSubmit={false}
                                 label='Password'
                                 value={password}
+                                autoCorrect={false}
+                                autoCapitalize='none'
                                 onChangeText={password => setPassword(password)}
                                 onSubmitEditing={() => ref_input4.current.focus()}
                                 secureTextEntry
@@ -80,6 +96,8 @@ const RegisterScreen = () => {
                             <TextInput style={styles.textInput}
                                 label='Re-enter Password'
                                 value={rePassword}
+                                autoCorrect={false}
+                                autoCapitalize='none'
                                 onChangeText={rePassword => setRePassword(rePassword)}
                                 onSubmitEditing={() => postRegister({ firstName, email, password, rePassword })}
                                 secureTextEntry
