@@ -43,6 +43,14 @@ export const getAccessTokens = async () => {
     })
 }
 
+export const getUserInfo = async () => {
+    return new Promise((resolve, reject) => {
+        axios.get('User')
+        .then((res) => resolve(res.data))
+        .catch((err) => reject(err))
+    })
+}
+
 export const getTransactions = async (accountId, accessToken) => {
     const year = new Date().getFullYear();
     const month = new Date().getMonth();

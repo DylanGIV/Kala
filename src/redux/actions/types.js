@@ -12,3 +12,5 @@ export const TRANSACTIONS_FETCH_STARTED = "transactions/fetch_started"
 export const TRANSACTIONS_FETCH_FAIL = "transactions/fetch_fail"
 
 export const THEME_SWITCH = "theme/switch"
+
+export const USER_FETCH = "user/fetch"

@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, SectionList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 import { Text, ActivityIndicator, IconButton } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchInstitutions } from '../../redux/actions/InstitutionActions';
 import { useEffect } from 'react';
+import { getUser } from '../../redux/actions/UserActions';
 import BankAccount from '../../components/BankAccount';
 
 const HomeScreen = (props) => {
@@ -20,7 +20,7 @@ const HomeScreen = (props) => {
 
     useEffect( () => {
         fetchBankAccounts()
-        
+        dispatch(getUser())
     }, [])
 
     const institutions = useSelector(state => state.institutions.institutions)

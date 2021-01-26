@@ -9,9 +9,9 @@ const joshHouse = 'http://192.168.50.53:45455'
 const herokuURL = 'https://kala-app-api.herokuapp.com/'
 
 let instance = axios.create({
-    //baseURL: localURL
+    baseURL: localURL
     //baseURL: joshHouse,
-    baseURL: herokuURL,
+    //baseURL: herokuURL,
 });
 
 instance.interceptors.request.use((config) => {

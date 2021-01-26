@@ -18,14 +18,15 @@ const ProfileScreen = () => {
     }
     let nextTheme
     const theme = useSelector(state => state.theme.theme)
+    const user = useSelector(state => state.user.user)
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
             <View style={{ flex: 1 }}>
                 <List.Section>
                     <List.Subheader>Profile</List.Subheader>
-                    <List.Item title='name' left={() => <List.Icon icon='account-circle' />} />
-                    <List.Item title='email' left={() => <List.Icon icon='email' />} />
+                    <List.Item title={user.firstName} left={() => <List.Icon icon='account-circle' />} />
+                    <List.Item title={user.userName} left={() => <List.Icon icon='email' />} />
                     <List.Subheader>Settings</List.Subheader>
 
                     <List.Item title={(theme.dark) ? 'Light mode' : 'Dark mode'} onPress={() => {(!theme.dark) ? nextTheme = darkTheme : nextTheme = lightTheme; switchTheme(nextTheme) }} left={() => <List.Icon icon='lightbulb-on-outline'/>} />
