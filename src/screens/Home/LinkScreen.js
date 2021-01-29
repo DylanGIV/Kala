@@ -1,15 +1,14 @@
-// # PLUGINS IMPORTS
-import React, { useEffect, useState } from "react"
-import { View, StyleSheet, ActivityIndicator, Text } from "react-native"
-import PlaidLink from "@burstware/expo-plaid-link"
-
-// # EXTRA IMPORTS
-import plaidConfig from "../../config/PlaidConfig"
-import plaid from "plaid"
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, Text } from "react-native";
+import PlaidLink from "@burstware/expo-plaid-link";
+import { useSelector } from 'react-redux';
+import plaidConfig from "../../config/PlaidConfig";
+import plaid from "plaid";
 import axios from '../../api/axiosConfig';
 
 export default function LinkScreen(props) {
   const [linkToken, setLinkToken] = useState(null)
+  const theme = useSelector(state => state.theme.theme)
 
   const plaidClient = new plaid.Client({
     clientID: plaidConfig.PLAID_CLIENT_ID,
@@ -49,7 +48,6 @@ export default function LinkScreen(props) {
       props.navigation.goBack()
   }
 
-
   if (linkToken) {
     return (
       <PlaidLink
@@ -60,7 +58,7 @@ export default function LinkScreen(props) {
     )
   } else {
     return (
-      <View>
+      <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
         <Text></Text>
       </View>
     )

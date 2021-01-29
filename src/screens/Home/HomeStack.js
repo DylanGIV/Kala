@@ -39,7 +39,7 @@ function HomeStack(props) {
             <Stack.Screen name="Account" component={AccountScreen} options={{ headerTitle: '', headerStyle: { backgroundColor: theme.colors.background, elevation: 0, borderBottomWidth: 0 }, headerTintColor: theme.colors.text }} />
             <Stack.Screen name="Transactions" component={TransactionsScreen} options={{ headerTitle: '', headerStyle: { backgroundColor: theme.colors.background, elevation: 0, borderBottomWidth: 0 }, headerTintColor: theme.colors.text}} />
             <Stack.Screen name="TransactionInfo" component={TransactionInfoScreen} options={{ headerTitle: '', headerStyle: { backgroundColor: theme.colors.background, elevation: 0, borderBottomWidth: 0 }, headerTintColor: theme.colors.text}} />
-            <Stack.Screen name="Link" component={LinkScreen} />
+            <Stack.Screen name="Link" component={LinkScreen} options={{ headerTitle: '', headerStyle: { backgroundColor: theme.colors.background, elevation: 0, borderBottomWidth: 0 }, headerTintColor: theme.colors.text}} />
         </Stack.Navigator>
     );
 }

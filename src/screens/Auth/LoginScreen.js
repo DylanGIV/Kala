@@ -52,8 +52,9 @@ const LoginScreen = (props) => {
                                     Sign In
                                 </Text>
                             </TouchableOpacity>
+                            <View style={{ flex: 0.1 }}/>
                             <View style={{ flex: 0.3, marginTop: 10 }}>
-                                <Button>
+                                <Button onPress={() => props.navigation.navigate('ForgotPassword')}>
                                     Forgot Password?
                                 </Button>
                             </View>

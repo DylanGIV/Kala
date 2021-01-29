@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Text, Button, ActivityIndicator } from 'react-native-paper';
+import { Text, ActivityIndicator } from 'react-native-paper';
 import { SafeAreaView, View, FlatList } from 'react-native';
 import Transactions from '../../components/Transactions';
 import { fetchTransactions } from '../../redux/actions/TransactionsAction';
