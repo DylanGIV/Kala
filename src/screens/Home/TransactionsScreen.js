@@ -9,8 +9,8 @@ import ReactNativeNumberFormat from '../../components/ReactNativeNumberFormat';
 
 const KEYS_TO_FILTERS = ['merchant_name', 'name']
 
-const TransactionsScreen = ({ route }) => {
-    const { account, accountId, transactions } = route.params;
+const TransactionsScreen = (props) => {
+    const { account, accountId, transactions } = props.route.params;
     const [height, setHeight] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [amount, setAmount] = useState(0);
@@ -39,11 +39,9 @@ const TransactionsScreen = ({ route }) => {
                 <SearchInput    
                     placeholderTextColor={theme.colors.text}
                     onChangeText={(term) => { setSearchTerm(term) }} 
-                    style={{ padding: 10, borderWidth: 1, marginHorizontal: 10, borderRadius: 10, borderColor: theme.colors.surface, color: theme.colors.text }}
+                    style={{ padding: 10, borderWidth: 4, marginHorizontal: 10, borderRadius: 10, borderColor: theme.colors.surface, color: theme.colors.text }}
                     placeholder="Search Transactions"
-                
                 />
-
             </View>
 
             <View style={{ flex: 12, backgroundColor: theme.colors.surface, borderTopLeftRadius: 20, borderTopRightRadius: 20, margin: 8 }}>
@@ -72,7 +70,7 @@ const TransactionsScreen = ({ route }) => {
                         onRefresh={() => fetchAccountTransactions(accountId)}
                         renderItem={({ item }) => {
                             return (
-                                <Transactions account={ account } transactions={ item } height={ (height - 6) / 7 } />
+                                <Transactions account={ account } transactions={ item } height={ (height - 6) / 7 } props={ props } />
                             )
                         }}
                     />}

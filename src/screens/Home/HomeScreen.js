@@ -40,6 +40,7 @@ const HomeScreen = (props) => {
                         icon='plus-circle-outline'
                         size={30}
                         onPress={addAccount}
+                        disabled={isLoading}
                     />
                 </View>
                 <View style={{ flex: 0.1 }}/>

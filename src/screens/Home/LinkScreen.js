@@ -54,7 +54,6 @@ export default function LinkScreen(props) {
     return (
       <PlaidLink
         linkToken={linkToken}
-        onEvent={(event) => console.log(event, "event")}
         onExit={() => props.navigation.goBack()}
         onSuccess={(success) => exchangeToken(success.publicToken)}
       />

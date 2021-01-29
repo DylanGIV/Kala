@@ -63,7 +63,7 @@ const AccountScreen = (props) => {
                         onRefresh={() => fetchAccountTransactions(accountId, accessToken)}
                         renderItem={({ item }) => {
                             return (
-                                <Transactions account={ account } transactions={ item } props={ props } height={ (height - 6) / 5 } />
+                                <Transactions account={ account } transactions={ item } height={ (height - 6) / 5 } props={ props } />
                             )
                         }}
                     />}

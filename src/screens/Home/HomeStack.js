@@ -2,6 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './HomeScreen';
 import AccountScreen from './AccountScreen';
 import TransactionsScreen from './TransactionsScreen';
+import TransactionInfoScreen from './TransactionInfoScreen';
 import LinkScreen from './LinkScreen';
 import React from 'react';
 import { IconButton } from 'react-native-paper';
@@ -37,6 +38,7 @@ function HomeStack(props) {
             <Stack.Screen name="Home" component={HomeScreen} options={{ headerRight: () => (<IconButton onPress={() => props.navigation.navigate('Profile')} icon='account-circle' color={theme.colors.text} size={30} />), headerTitle: '', headerStyle: { backgroundColor: theme.colors.background, elevation: 0, borderBottomWidth: 0 }, headerTintColor: theme.colors.text  }} />
             <Stack.Screen name="Account" component={AccountScreen} options={{ headerTitle: '', headerStyle: { backgroundColor: theme.colors.background, elevation: 0, borderBottomWidth: 0 }, headerTintColor: theme.colors.text }} />
             <Stack.Screen name="Transactions" component={TransactionsScreen} options={{ headerTitle: '', headerStyle: { backgroundColor: theme.colors.background, elevation: 0, borderBottomWidth: 0 }, headerTintColor: theme.colors.text}} />
+            <Stack.Screen name="TransactionInfo" component={TransactionInfoScreen} options={{ headerTitle: '', headerStyle: { backgroundColor: theme.colors.background, elevation: 0, borderBottomWidth: 0 }, headerTintColor: theme.colors.text}} />
             <Stack.Screen name="Link" component={LinkScreen} />
         </Stack.Navigator>
     );

@@ -5,7 +5,7 @@ import ReactNativeNumberFormat from '../components/ReactNativeNumberFormat';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useSelector } from 'react-redux';
 
-const Transactions = ({ account, transactions, height }) => {
+const Transactions = ({ account, transactions, height, props }) => {
     let amount = transactions.amount;
     const theme = useSelector(state => state.theme.theme)
 
@@ -15,7 +15,7 @@ const Transactions = ({ account, transactions, height }) => {
     }
 
     return (
-            <TouchableWithoutFeedback style={{ flex: 1 }}>
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => props.navigation.navigate('TransactionInfo', { transactions })}>
                 <View style={{ flex: 1, padding: 10, borderTopWidth: 2, borderColor: theme.colors.surface, height: height, borderRadius: 6, backgroundColor: theme.colors.background, flexDirection: 'row' }}>
                     <View style={{ flex: 3, justifyContent: 'space-between' }}>
                         <Text style={{ color: theme.colors.text, fontSize: 16 }} numberOfLines={1}>
