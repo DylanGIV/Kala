@@ -7,8 +7,8 @@ import plaid from "plaid";
 import axios from '../../api/axiosConfig';
 
 export default function LinkScreen(props) {
-  const [linkToken, setLinkToken] = useState(null)
-  const theme = useSelector(state => state.theme.theme)
+  const [linkToken, setLinkToken] = useState('')
+  const [enterPlaid, setEnterPlaid] = useState(false)
 
   const plaidClient = new plaid.Client({
     clientID: plaidConfig.PLAID_CLIENT_ID,
@@ -27,8 +27,8 @@ export default function LinkScreen(props) {
         country_codes: ["US"],
         language: "en",
       })
-
       setLinkToken(response.link_token)
+      
     }
     getData()
   }, [])
@@ -48,7 +48,7 @@ export default function LinkScreen(props) {
       props.navigation.goBack()
   }
 
-  if (linkToken) {
+  if (linkToken !== '' && !enterPlaid) {
     return (
       <PlaidLink
         linkToken={linkToken}
@@ -56,13 +56,21 @@ export default function LinkScreen(props) {
         onSuccess={(success) => exchangeToken(success.publicToken)}
       />
     )
-  } else {
+  } else if (linkToken !== '' && enterPlaid) {
     return (
-      <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
-        <Text></Text>
+      <View style={{ flex: 0 }}>
+        
+            <View style={{ flex: 0 }}>
+                <PlaidLink
+                    linkToken={''}
+                />  
+            </View>
+            {setEnterPlaid(false)}
+            
       </View>
     )
+  } else {
+    (!enterPlaid ? setEnterPlaid(Platform.OS === 'ios' ? false : true) : null)
+    return null
   }
 }
-
-const styles = StyleSheet.create({})

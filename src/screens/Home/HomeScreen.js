@@ -1,6 +1,5 @@
-import React from 'react';
-import { View, SectionList } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { useState } from 'react';
+import { View, SectionList, SafeAreaView } from 'react-native';
 import { Text, ActivityIndicator, IconButton } from 'react-native-paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchInstitutions } from '../../redux/actions/InstitutionActions';
@@ -31,6 +30,7 @@ const HomeScreen = (props) => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background}}>
             <View style={{ flex: 1 }}>
+                
 
                 <View style={{ flex: 0.2, justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center', padding: 10 }}>
                     <Text style={{ fontSize: 32 }}>
@@ -61,7 +61,7 @@ const HomeScreen = (props) => {
                             }}
                             renderSectionHeader={({ section }) => (
                                 <View style={{ flex: 1, flexDirection: 'column', alignSelf: 'flex-start' }}>
-                                    <View style={{ flex: 1, backgroundColor: theme.colors.primary, height: 30, justifyContent: 'center', padding: 10, borderBottomRightRadius: 20, borderBottomLeftRadius: 20, borderTopRightRadius: 20 }}>
+                                    <View style={{ flex: 1, backgroundColor: theme.colors.primary, justifyContent: 'center', padding: 10, borderBottomRightRadius: 20, borderBottomLeftRadius: 20, borderTopRightRadius: 20 }}>
                                         <Text style={{fontSize: 18, marginHorizontal: 10}}>
                                             {section.title}
                                         </Text>
@@ -71,7 +71,7 @@ const HomeScreen = (props) => {
                         />
                     }
                 </View>
-                <View style={{ flex: 0.1 }}/>
+                <View style={{ flex: 0.05 }}/>
             </View>
         </SafeAreaView>
     )

@@ -25,7 +25,7 @@ const AccountScreen = (props) => {
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
 
-            <View style={{ flex: 1, alignItems: 'center' }}>
+            <View style={{ flex: 0.5, alignItems: 'center' }}>
                 <Text style={{ color: theme.colors.text, fontSize: 28 }}>
                     { account.name }
                 </Text>
@@ -58,12 +58,12 @@ const AccountScreen = (props) => {
                     <FlatList
                         keyExtractor={item => item.transaction_id}
                         showsVerticalScrollIndicator={false}
-                        data={transactions.slice(0,5)}
+                        data={transactions.slice(0,6)}
                         refreshing={(isLoading) ? true : false}
                         onRefresh={() => fetchAccountTransactions(accountId, accessToken)}
                         renderItem={({ item }) => {
                             return (
-                                <Transactions account={ account } transactions={ item } height={ (height - 6) / 5 } props={ props } />
+                                <Transactions account={ account } transactions={ item } height={ (height - 6) / 6 } props={ props } />
                             )
                         }}
                     />}
@@ -71,7 +71,7 @@ const AccountScreen = (props) => {
 
             </View>
             
-            <View style={{ flex: 1 }}/>
+            <View style={{ flex: 0.05 }}/>
 
         </SafeAreaView>
     )

@@ -33,6 +33,8 @@ const LoginScreen = (props) => {
                         <View style={{ flex: 1.3 }}>
                             <TextInput style={styles.textInput}
                                 returnKeyType={"next"}
+                                autoCapitalize='none'
+                                autoCorrect={false}
                                 blurOnSubmit={false}
                                 label='Email'
                                 value={email}
