@@ -10,23 +10,6 @@ Kala is a finance app created to see all of your banks, accounts, and transactio
       height=500px 
    />
    <img 
-      alt="Register Screen" 
-      src="docs/register.jpg" 
-      height=500px 
-   />
-   <img 
-      alt="Forgot Password Screen" 
-      src="docs/forgot-password.jpg" 
-      height=500px 
-   />
-</p>
-<p float="left">
-   <img 
-      alt="Try Again Screen" 
-      src="docs/try-again.jpg" 
-      height=500px 
-   />
-   <img 
       alt="Accounts Screen" 
       src="docs/accounts.jpg" 
       height=500px 
@@ -34,7 +17,7 @@ Kala is a finance app created to see all of your banks, accounts, and transactio
    <img 
       alt="Transactions Screen" 
       src="docs/transactions.jpg" 
-      height=500px 
+      height=500px
    />
 </p>
 <p float="left">
