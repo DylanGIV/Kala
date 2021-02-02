@@ -17,15 +17,18 @@ const RegisterScreen = () => {
     const ref_input2 = useRef();
     const ref_input3 = useRef();
     const ref_input4 = useRef();
-    const reg = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    const regEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    const regPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
 
     const postRegister = async ({ firstName, email, password, rePassword }) => {
-        console.log(firstName)
-        console.log(email)
-        console.log(password)
         
-        if (reg.test(email) === false) {
+        if (regEmail.test(email) === false) {
             alert('Not a valid Email Address')
+            return
+        }
+        if (regPassword.test(password) === false) {
+            alert('Password must be at least 8 characters and must contain a special character, a number, a lowercase, and an uppercase')
             return
         }
         if (password !== rePassword) {

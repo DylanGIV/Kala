@@ -25,6 +25,7 @@ export const loginWithEmailAndPassword = (email, password) => {
         })
         .catch(err => {
             dispatch({ type: AUTH_LOGIN_FAIL, payload: err })
+            alert('Invalid email and password')
         })
     }
 }

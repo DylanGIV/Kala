@@ -59,10 +59,9 @@ export const getTransactions = async (accountId, accessToken) => {
     const startDate = (year - 2) + '-' + ((month + 1) < 10 ? ('0' + (month + 1)) : (month + 1) ) + '-' + ((date < 10) ? ('0' + date) : date);
 
     return new Promise((resolve, reject) => {
-        console.log(currentDate)
         plaidClient.getTransactions(accessToken, startDate, currentDate, { account_ids: [accountId], count: 500 })
         .then((res) => resolve(res))
-        .catch((err) => console.log(err))
+        .catch((err) => reject(err))
     })
 }
 
