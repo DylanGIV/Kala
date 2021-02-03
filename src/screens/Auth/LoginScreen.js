@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loginWithEmailAndPassword } from '../../redux/actions/AuthActions';
 
 const LoginScreen = (props) => {
-    const [email, setEmail] = useState('Expo@mail.com')
-    const [password, setPassword] = useState('Expo!1')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const ref_input2 = useRef();
 

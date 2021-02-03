@@ -19,7 +19,7 @@ export default function AppContent() {
     return (
         <PaperProvider theme={theme}>
             <SafeAreaProvider>
-                <StatusBar barStyle="light-content"/>
+                <StatusBar barStyle={(Platform.OS === 'ios') ? 'dark-content' : 'light-content'}/>
                 <NavigationContainer>
                     <AppStack.Navigator headerMode="none" >
                     {jwt ? (

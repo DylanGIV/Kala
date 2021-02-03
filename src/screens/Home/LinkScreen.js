@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
 import PlaidLink from "@burstware/expo-plaid-link";
-import { useSelector } from 'react-redux';
 import plaidConfig from "../../config/PlaidConfig";
 import plaid from "plaid";
 import axios from '../../api/axiosConfig';
 
 export default function LinkScreen(props) {
   const [linkToken, setLinkToken] = useState('')
-  const [enterPlaid, setEnterPlaid] = useState(false)
 
   const plaidClient = new plaid.Client({
     clientID: plaidConfig.PLAID_CLIENT_ID,
@@ -28,7 +25,6 @@ export default function LinkScreen(props) {
         language: "en",
       })
       setLinkToken(response.link_token)
-      
     }
     getData()
   }, [])
@@ -48,7 +44,8 @@ export default function LinkScreen(props) {
       props.navigation.goBack()
   }
 
-  if (linkToken !== '' && !enterPlaid) {
+  if (linkToken !== '') {
+    
     return (
       <PlaidLink
         linkToken={linkToken}
@@ -56,21 +53,7 @@ export default function LinkScreen(props) {
         onSuccess={(success) => exchangeToken(success.publicToken)}
       />
     )
-  } else if (linkToken !== '' && enterPlaid) {
-    return (
-      <View style={{ flex: 0 }}>
-        
-            <View style={{ flex: 0 }}>
-                <PlaidLink
-                    linkToken={''}
-                />  
-            </View>
-            {setEnterPlaid(false)}
-            
-      </View>
-    )
   } else {
-    (!enterPlaid ? setEnterPlaid(Platform.OS === 'ios' ? false : true) : null)
     return null
   }
 }

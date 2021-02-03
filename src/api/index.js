@@ -55,8 +55,8 @@ export const getTransactions = async (accountId, accessToken) => {
     const year = new Date().getFullYear();
     const month = new Date().getMonth();
     const date = new Date().getDate();
-    const currentDate = year + '-' + ((month + 1) < 10 ? ('0' + (month + 1)) : (month + 1) ) + '-' + date;
-    const startDate = (year - 2) + '-' + ((month + 1) < 10 ? ('0' + (month + 1)) : (month + 1) ) + '-' + date;
+    const currentDate = year + '-' + ((month + 1) < 10 ? ('0' + (month + 1)) : (month + 1) ) + '-' + ((date < 10) ? ('0' + date) : date);
+    const startDate = (year - 2) + '-' + ((month + 1) < 10 ? ('0' + (month + 1)) : (month + 1) ) + '-' + ((date < 10) ? ('0' + date) : date);
 
     return new Promise((resolve, reject) => {
         plaidClient.getTransactions(accessToken, startDate, currentDate, { account_ids: [accountId], count: 500 })
