@@ -1,6 +1,7 @@
 # Kala
 
 Kala is a finance app created to see all of your banks, accounts, and transactions in one place
+* [See on play store]https://play.google.com/store/apps/details?id=com.dylangiv.kala
 
 ## In-App Screenshots
 <p float="left">
